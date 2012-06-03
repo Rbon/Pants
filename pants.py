@@ -159,7 +159,7 @@ while 1:
         pingTime = time.time()
 
     nowTime = time.time()
-    if nowTime - pingTime > 60:
+    if nowTime - pingTime > 180:
         s.send("PONG%s" % (PONG))
         log("NOTICE", "NO PING IN 3 MINUTES")
         log("NOTICE", "SENT: PONG%s" % (PONG[:-2]))
