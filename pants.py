@@ -175,7 +175,7 @@ while 1:
                 except KeyError:
                     
                     #admin triggered commands
-                    if chat.find(":%s!" % (admin))==0 or chat.find(":jercos!")==0:
+                    if chat.find(":%s!" % (admin))==0:
                         if chat.find("quit") != -1:
                             quitMessage=quitPhrases[random.randint(0, len(quitPhrases)-1)]
                             s.send("QUIT :%s\r\n" % (quitMessage))
@@ -236,5 +236,7 @@ while 1:
         send("Wrex.")
     elif message.find("shepard.\r\n") != -1:
         send("Wrex.")
+    elif message.find("20% cooler") != -1:
+        send("YOU SAID THAT WAS OVER")
 
 
