@@ -129,28 +129,6 @@ while 1:
         }
 
 
-    #pony related things
-    ponyWhiteList = [
-        ".gov",
-        "wikipedia.org",
-        "ebay.com",
-        "pastebin.com",
-        "snag.gy",
-        "4chanarchive.org",
-        ]
-
-    ponyBlackList = [
-        ".png",
-        ".jpg",
-        ".jpeg",
-        ".gif",
-        "tumbler.com",
-        "youtube.com",
-        "youtu.be",
-        "snag.gy",
-        "imgur.com",
-        ]
-
     if chat.find("PING") != -1:
         PONG = chat[chat.find("PING")+4:]
         s.send("PONG%s" % (PONG))
@@ -181,15 +159,6 @@ while 1:
     elif chat.find("PRIVMSG") != -1:
         log(sender,message[0:len(message)-2])
             
-        #jercos triggered commands
-        #if sender == "jercos":
-        #    if chat.find("http://") != -1:
-        #        line = chat.lower()
-        #        for item in ponyBlackList:
-        #            if line.find(item) != -1:
-        #                ponies()
-        #                break
-
         #hilight triggered commands
         if chat.find("%s:" % (nick)) != -1:
             messageStart = chat.find("%s :" % (chan))
@@ -267,5 +236,7 @@ while 1:
         send("Wrex.")
     elif message.find("shepard.\r\n") != -1:
         send("Wrex.")
+    elif message.find("20% cooler") != -1:
+        send("YOU SAID THAT WAS OVER")
 
 
