@@ -132,12 +132,12 @@ while 1:
     if chat.find("PING") != -1:
         PONG = chat[chat.find("PING")+4:]
         s.send("PONG%s" % (PONG))
-        log("NOTICE", "GOT:  %s" % (chat[:-2]))
-        log("NOTICE", "SENT: PONG%s" % (PONG[:-2]))
+##        log("NOTICE", "GOT:  %s" % (chat[:-2]))
+##        log("NOTICE", "SENT: PONG%s" % (PONG[:-2]))
         pingTime = time.time()
 
     nowTime = time.time()
-    if nowTime - pingTime > 60:
+    if nowTime - pingTime > 180:
         s.send("PONG%s" % (PONG))
         log("NOTICE", "NO PING IN 3 MINUTES")
         log("NOTICE", "SENT: PONG%s" % (PONG[:-2]))
