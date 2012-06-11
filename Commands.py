@@ -163,7 +163,7 @@ class Commands():
 
 
     def Say(self, token):
-        self.Send(token)
+        self.Send(token.strip())
 
     def SayReloaded(self):
         self.Send('Done.')

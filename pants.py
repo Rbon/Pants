@@ -6,10 +6,10 @@ class Core():
     def __init__(self):
         self.host = 'mindjail.subluminal.net'
         self.port = 6667
-        self.nick = 'Pants'
+        self.nick = 'testPants'
         self.ident = 'Pants'
         self.realname = 'Pants'
-        self.chan = '#thoseguys'
+        self.chan = '#sandbots'
         self.admin = 'Rbon'
         self.socket = None
 
