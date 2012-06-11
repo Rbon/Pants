@@ -100,7 +100,6 @@ class Commands():
         while running == None:
             self.now = time.time()
             self.chat = self.socket.makefile().readline()
-            print self.chat
             if self.chat.find('PING') == 0:
                 self.PONG = self.chat[self.chat.find('PING')+4:]
                 self.socket.send('PONG' + self.PONG)
@@ -165,7 +164,6 @@ class Commands():
         self.Send('Done.')
 
     def Reload(self):
-        self.Send('Reloading...')
         return False
         
     def Send(self, token):
