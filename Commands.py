@@ -20,6 +20,7 @@ class Commands():
         
         self.commandList = {
             'reload' : self.Reload,
+            'say': self.Say,
             'quit' : self.Quit,
             }
         self.pingTime = time.time()
