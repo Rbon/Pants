@@ -3,7 +3,6 @@ import random
 import time
 import datetime
 import sys
-import warnings
 
 
 class Commands():
@@ -16,8 +15,7 @@ class Commands():
         self.sender = ''
         self.chat = ''
         self.dColon = 0
-        self.colonD = 0
-        
+        self.colonD = 0  
         self.commandList = {
             'reload' : self.Reload,
             'say': self.Say,
@@ -128,8 +126,7 @@ class Commands():
                                 exactResponse = self.eightBallList[random.randint(0, randomLen)]
                                 self.Send(exactResponse)
                             except KeyError:
-                                    return
-                                        
+                                    return      
                     except TypeError:
                         running = self.commandList[command]()
             elif self.chat.find("NOTICE") == -1:
@@ -169,7 +166,10 @@ class Commands():
         self.Send('Done.')
 
     def Reload(self):
-        return False
+        if self.sender == self.admin:
+            return False
+        else:
+            self.Send(self.sender + ': you don\'t have permission, dude.')
         
     def Send(self, token):
         self.Log(self.nick, token)
