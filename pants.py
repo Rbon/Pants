@@ -9,7 +9,7 @@ class Core():
         self.nick = 'Pants'
         self.ident = 'Pants'
         self.realname = 'Pants'
-        self.chan = '#sandbots'
+        self.chan = '#thoseguys'
         self.admin = 'Rbon'
         self.socket = None
 
