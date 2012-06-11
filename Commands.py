@@ -78,8 +78,12 @@ class Commands():
             "Outlook not so good.",
             "Very doubtful.",
             ]
+        self.danceList = [
+            '\x01ACTION does the Pants Dance'
+            ]
         #list of commands
         self.responseList = {
+            'dance':self.danceList,
             "botsnack":self.botsnackList,
             "hello":self.helloList,
             "hello.":self.helloList,
