@@ -52,7 +52,7 @@ class Commands():
             "...with my mouth?",
             ]
         self.eyeList = [
-            self.sender+": <.<",
+            "__SENDER__: <.<",
             ]
         self.dropList = [
             "\x01ACTION dropped it like it's hot\x01"
