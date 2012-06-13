@@ -6,7 +6,7 @@ class Core():
     def __init__(self):
         self.host = 'mindjail.subluminal.net'
         self.port = 6667
-        self.nick = 'Pants'
+        self.nick = 'PantsTest'
         self.ident = 'Pants'
         self.realname = 'Pants'
         self.chan = '#sandbots'

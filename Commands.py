@@ -1,8 +1,6 @@
 import string
 import random
-import time
 import datetime
-import sys
 
 
 class Commands():
@@ -14,14 +12,11 @@ class Commands():
         self.message = ''
         self.sender = ''
         self.chat = ''
-        self.dColon = 0
-        self.colonD = 0  
         self.commandList = {
             'reload' : self.Reload,
             'say': self.Say,
             'quit' : self.Quit,
             }
-        self.pingTime = time.time()
         self.PONG = ''
 
         self.quitPhrases = [
@@ -101,7 +96,6 @@ class Commands():
     def Run(self):
         running = None
         while running == None:
-            self.now = time.time()
             self.chat = self.socket.makefile().readline()
             if self.chat.find('PING') == 0:
                 self.PONG = self.chat[self.chat.find('PING')+4:]
@@ -156,8 +150,11 @@ class Commands():
         else:
             sender = "<"+sender+">"
         self.now = datetime.datetime.today()
-        print "["+self.now.strftime("%H:%M")+"] "+sender+" "+message
-
+        line = "["+self.now.strftime("%H:%M")+"] "+sender+" "+message
+        self.logFile = open('log.txt', 'a')
+        self.logFile.write(line+'\n')
+        self.logFile.close()
+        print line
 
     def Say(self, token):
         self.Send(token.strip())
