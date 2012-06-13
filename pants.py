@@ -12,7 +12,6 @@ class Core():
         self.chan = '#thoseguys'
         self.admin = 'Rbon'
         self.passwd = open('passwd.txt', 'r').read()
-        print self.passwd
         self.socket = None
 
     
