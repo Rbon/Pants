@@ -16,7 +16,6 @@ class Core():
             self.passwd = self.configFile[5].split()[1]
         except IndexError:
             self.passwd = None
-        socket.socket = socket.socket()
         socket.socket.connect((self.host, self.port))
         socket.socket.send('nick '+self.nick+'\r\n')
         socket.socket.send('USER '+self.ident+' '+self.host+' derp :'+self.realname+'\r\n')
