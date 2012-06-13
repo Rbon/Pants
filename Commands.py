@@ -1,6 +1,7 @@
 import string
 import random
 import datetime
+import os
 
 
 class Commands():
@@ -164,6 +165,7 @@ class Commands():
 
     def Reload(self):
         if self.sender == self.admin:
+            os.system('git pull git://github.com/Rbon/Pants.git master')
             return False
         else:
             self.Send(self.sender + ': you don\'t have permission, dude.')
