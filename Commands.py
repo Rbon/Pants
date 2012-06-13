@@ -2,11 +2,11 @@ import string
 import random
 import datetime
 import os
-import socket
 
 
 class Commands():
-    def __init__(self, chan, nick, admin):
+    def __init__(self, socket, chan, nick, admin):
+        self.socket = socket
         self.admin = admin
         self.nick = nick
         self.chan = chan
@@ -101,10 +101,10 @@ class Commands():
     def Run(self):
         running = None
         while running == None:
-            self.chat = socket.socket.makefile().readline()
+            self.chat = self.socket.makefile().readline()
             if self.chat.find('PING') == 0:
                 self.PONG = self.chat[self.chat.find('PING')+4:]
-                socket.socket.send('PONG' + self.PONG)
+                self.socket.send('PONG' + self.PONG)
             self.sender = self.chat[1:self.chat.find('!')]
             self.message = self.chat[self.chat.find(self.chan) + len(self.chan) + 2:len(self.chat) - 2]
             if self.chat.find('PRIVMSG') != -1:
@@ -176,14 +176,14 @@ class Commands():
         
     def Send(self, token):
         self.Log(self.nick, token)
-        socket.socket.send('PRIVMSG %s :%s\r\n' % (self.chan, token))
+        self.socket.send('PRIVMSG %s :%s\r\n' % (self.chan, token))
 
     def Quit(self):
         if self.sender == self.admin:
             randomLen = len(self.quitPhrases)-1
             exactResponse = self.quitPhrases[random.randint(0, randomLen)]
             quitResponse = 'QUIT :'+exactResponse+'\r\n'
-            socket.socket.send(quitResponse)
+            self.socket.send(quitResponse)
             self.Log(self.nick, 'quit '+self.chan+': '+exactResponse)
             return 'quit'
         else:

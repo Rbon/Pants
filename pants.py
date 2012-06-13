@@ -16,18 +16,19 @@ class Core():
             self.passwd = self.configFile[5].split()[1]
         except IndexError:
             self.passwd = None
-        socket.socket.connect((self.host, self.port))
-        socket.socket.send('nick '+self.nick+'\r\n')
-        socket.socket.send('USER '+self.ident+' '+self.host+' derp :'+self.realname+'\r\n')
+        self.socket = socket.socket()
+        self.socket.connect((self.host, self.port))
+        self.socket.send('nick '+self.nick+'\r\n')
+        self.socket.send('USER '+self.ident+' '+self.host+' derp :'+self.realname+'\r\n')
         if self.passwd != None:
-            socket.socket.send('PRIVMSG NickServ identify '+self.passwd+'\r\n')
-        socket.socket.send('JOIN '+self.chan+'\r\n')
+            self.socket.send('PRIVMSG NickServ identify '+self.passwd+'\r\n')
+        self.socket.send('JOIN '+self.chan+'\r\n')
         
     def Run(self):
         ret = ''
         join = True
         while ret != 'quit':
-            commands = Commands.Commands(self.chan, self.nick, self.admin)
+            commands = Commands.Commands(self.socket, self.chan, self.nick, self.admin)
             if join == True:
                 commands.Log(self.nick, 'joined '+self.chan)
                 join = False
@@ -38,5 +39,5 @@ class Core():
 
 core = Core()
 core.Run()
-socket.socket.shutdown(socket.SHUT_RDWR)
-socket.socket.close()
+self.socket.shutdown(socket.SHUT_RDWR)
+self.socket.close()
