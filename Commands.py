@@ -155,7 +155,7 @@ class Commands():
         else:
             sender = '<'+sender+'>'
         self.now = datetime.datetime.today()
-        line = self.now.strftime('[%Y-%m-%d][%H:%M]')' '+sender+' '+message
+        line = self.now.strftime('[%Y-%m-%d][%H:%M]')+' '+sender+' '+message
         self.logFile = open('log.txt', 'a')
         self.logFile.write(line+'\n')
         self.logFile.close()
