@@ -39,5 +39,5 @@ class Core():
 
 core = Core()
 core.Run()
-self.socket.shutdown(socket.SHUT_RDWR)
-self.socket.close()
+core.socket.shutdown(socket.SHUT_RDWR)
+core.socket.close()
