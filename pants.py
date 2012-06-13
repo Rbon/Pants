@@ -11,6 +11,8 @@ class Core():
         self.realname = 'Pants'
         self.chan = '#thoseguys'
         self.admin = 'Rbon'
+        self.passwd = open('passwd.txt', 'r').read()
+        print self.passwd
         self.socket = None
 
     
@@ -28,6 +30,7 @@ class Core():
         self.socket.connect((self.host, self.port))
         self.socket.send('nick %s\r\n' % (self.nick))
         self.socket.send('USER %s %s bla :%s\r\n' % (self.ident, self.host, self.realname))
+        self.socket.send('PRIVMSG NickServ identify '+self.passwd+'\r\n')
         self.socket.send('JOIN %s\r\n' % (self.chan))
 
 
