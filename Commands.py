@@ -102,6 +102,7 @@ class Commands():
         running = None
         while running == None:
             self.chat = self.socket.makefile().readline()
+            print self.chat
             if self.chat.find('PING') == 0:
                 self.PONG = self.chat[self.chat.find('PING')+4:]
                 self.socket.send('PONG' + self.PONG)
