@@ -102,11 +102,11 @@ class Commands():
         running = None
         while running == None:
             self.chat = self.socket.makefile().readline()
-            print self.chat
+            self.AltLog(self.chat)
             if self.chat.find('PING') == 0:
                 self.PONG = self.chat[self.chat.find('PING')+4:]
                 self.socket.send('PONG' + self.PONG)
-                print 'PONG' + self.PONG
+                self.AltLog('SENT PONG'+self.PONG)
             self.sender = self.chat[1:self.chat.find('!')]
             self.message = self.chat[self.chat.find(self.chan) + len(self.chan) + 2:len(self.chat) - 2]
             if self.chat.find('PRIVMSG') != -1:
@@ -162,6 +162,12 @@ class Commands():
         self.logFile.write(line+'\n')
         self.logFile.close()
         print line
+
+    def AltLog(self, message):
+        if message != '':
+            logFile = open('altlog.txt', 'a')
+            logFile.write(message)
+            logFile.close()
 
     def Say(self, token):
         self.Send(token.strip())
