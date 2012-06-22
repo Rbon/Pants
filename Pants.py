@@ -4,23 +4,20 @@ import socket
 
 class Core():
     def __init__(self):
-        self.configFile = open('config.txt', 'r').readlines()
-        self.nick = self.configFile[0].split()[1]
-        self.host = self.configFile[1].split()[1]
-        self.port = int(self.configFile[2].split()[1])
-        self.admin = self.configFile[3].split()[1]
-        self.chan = self.configFile[4].split()[1]
+        configFile = open('config.txt', 'r').readlines()
+        self.nick = configFile[0][configFile[0].find('=')+1:].strip(' \n')
+        self.host = configFile[1][configFile[1].find('=')+1:].strip(' \n')
+        self.port = int(configFile[2][configFile[2].find('=')+1:].strip(' \n'))
+        self.admin = configFile[3][configFile[3].find('=')+1:].strip(' \n')
+        self.chan = configFile[4][configFile[4].find('=')+1:].strip(' \n')
         self.ident = self.nick
         self.realname = self.nick
-        try:
-            self.passwd = self.configFile[5].split()[1]
-        except IndexError:
-            self.passwd = None
+        self.passwd = configFile[5][configFile[5].find('=')+1:].strip(' \n')
         self.socket = socket.socket()
         self.socket.connect((self.host, self.port))
         self.socket.send('nick '+self.nick+'\r\n')
         self.socket.send('USER '+self.ident+' '+self.host+' derp :'+self.realname+'\r\n')
-        if self.passwd != None:
+        if self.passwd != '':
             self.socket.send('PRIVMSG NickServ identify '+self.passwd+'\r\n')
         self.socket.send('JOIN '+self.chan+'\r\n')
         
