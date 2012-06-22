@@ -12,7 +12,7 @@ class Commands():
         self.chan = chan
         self.message = ''
         self.sender = ''
-        self.chat = ''
+        self.socketFile = self.socket.makefile()
         self.commandList = {
             'reload' : self.Reload,
             'say': self.Say,
@@ -101,7 +101,7 @@ class Commands():
     def Run(self):
         running = None
         while running == None:
-            self.chat = self.socket.makefile().readline()
+            self.chat = self.socketFile.readline()
             self.AltLog(self.chat)
             if self.chat.find('PING') == 0:
                 self.PONG = self.chat[self.chat.find('PING')+4:]
