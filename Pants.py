@@ -23,12 +23,8 @@ class Core():
         
     def Run(self):
         ret = ''
-        join = True
         while ret != 'quit':
             commands = Commands.Commands(self.socket, self.chan, self.nick, self.admin)
-            if join == True:
-                commands.Log(self.nick, 'joined '+self.chan)
-                join = False
             ret = commands.Run()
             if (ret != 'quit'):
                 reload(Commands)

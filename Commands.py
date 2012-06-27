@@ -102,11 +102,12 @@ class Commands():
         running = None
         while running == None:
             self.chat = self.socketFile.readline()
+            self.now = datetime.datetime.today()
             self.AltLog(self.chat)
             if self.chat.find('PING') == 0:
                 self.PONG = self.chat[self.chat.find('PING')+4:]
                 self.socket.send('PONG' + self.PONG)
-                self.AltLog('SENT PONG'+self.PONG)
+##                self.AltLog('SENT PONG'+self.PONG)
             self.sender = self.chat[1:self.chat.find('!')]
             self.message = self.chat[self.chat.find(self.chan) + len(self.chan) + 2:len(self.chat) - 2]
             if self.chat.find('PRIVMSG') != -1:
@@ -134,7 +135,9 @@ class Commands():
                 if self.chat.find('JOIN')!=-1:
                     self.Log(self.sender, '\x01ACTION joined '+self.chan)
                 elif self.chat.find('QUIT')!=-1:
-                    messageStart=self.chat.find(':Quit:')+7
+                    messageStart = self.chat.find('QUIT') + 5
+                    if self.chat.find(':Quit:') != -1:
+                        messageStart += 7
                     self.message = self.chat[messageStart:]
                     self.Log(self.sender, '\x01ACTION quit '+self.chan+': '+self.message)
                 elif self.chat.find('PART')!=-1:
@@ -151,13 +154,47 @@ class Commands():
         exactResponse = exactResponse.replace('__SENDER__', self.sender)
         self.Send(exactResponse)
 
+    #This is as far as I got in remaking Log. 
+##    def Log(self, token, parse = False, fileName = 'log.txt'):
+##        token = token.rstrip(string.whitespace)
+##        if parse == True:
+##            output = ''
+##            log = ''
+##            blackList = [
+##                'PING',
+##                self.chan,
+##                self.nick,
+##                ]
+##            splitToken = token.split()
+##            if blackList.HAS THING(splitToken[0]):
+##                print 'IT IS IN'
+##                if splitToken[1] == 'PRIVMSG':
+##                    if splitToken[3] == ':\x01ACTION':
+##                        message = token[token.find(':\x01ACTION') + 9:]
+##                    else:
+##                        sender = '<'+self.sender+'>'
+##                        message = token[token.find(' :') + 2:]
+##                    log = sender+' '+message
+##                if splitToken[1] == 'QUIT':
+##                    message = token[token.find('QUIT')+5]
+##                    if splitToken[2] == ':Quit:':
+##                        message = message[7:]
+##                    log = self.sender+' quit '+self.chan+' '+message
+##                output = self.now.strftime('[%Y-%m-%d][%H:%M]')+' '+log
+##        else:
+##            output = token
+##        logFile = open(fileName, 'a')
+##        logFile.write(output+'\n')
+##        logFile.close()
+##        print output
+
     def Log(self, sender, message):
         if message.find('\x01ACTION ') == 0:
             message = message[8:]
         else:
             sender = '<'+sender+'>'
         self.now = datetime.datetime.today()
-        line = self.now.strftime('[%Y-%m-%d][%H:%M]')+' '+sender+' '+message
+        line = self.now.strftime('[%Y-%m-%d][%H:%M]')+' '+sender+' '+message.rstrip(string.whitespace)
         self.logFile = open('log.txt', 'a')
         self.logFile.write(line+'\n')
         self.logFile.close()
@@ -184,6 +221,11 @@ class Commands():
         
     def Send(self, token):
         self.Log(self.nick, token)
+        #Part of the unfinished Log
+##        if token.endswith('\x01'):
+##            self.Log(self.now.strftime('[%Y-%m-%d][%H:%M]')+' '+self.nick+' '+token[8:])
+##        else:
+##            self.Log(self.now.strftime('[%Y-%m-%d][%H:%M]')+' <'+self.nick+'> '+token)
         self.socket.send('PRIVMSG %s :%s\r\n' % (self.chan, token))
 
     def Quit(self):
