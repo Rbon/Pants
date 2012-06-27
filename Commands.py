@@ -76,8 +76,8 @@ class Commands():
         self.danceList = [
             '\x01ACTION does the Pants Dance',
             ]
-        self.fartList = [
-            'Herp a derp.',
+        self.testList = [
+            'I lik-a do da cha cha.',
             ]
         #list of commands
         self.responseList = {
@@ -95,7 +95,7 @@ class Commands():
             'make me not lonely':self.lonelyList,
             '>.>':self.eyeList,
             'drop':self.dropList,
-            'fart':self.fartList,
+            'test':self.testList,
             }
 
     def Run(self):
