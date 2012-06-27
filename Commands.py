@@ -113,13 +113,14 @@ class Commands():
                 self.Log(self.sender, self.message)
                 if self.message.find(self.nick+': ') == 0:
                     self.message = self.message[len(self.nick) + 2 : ]
+                    print self.message
                     try:
                         command = self.message.lower().split()[0]
                         token = self.message[len(command) : ]
                         running = self.commandList[command](token)
                     except KeyError:
-                        if self.responseList.has_key(command):
-                            self.Respond(command)
+                        if self.responseList.has_key(self.message):
+                            self.Respond(self.message)
                             #check for a question mark
                         elif command.find('?') != -1:
                             try:
