@@ -50,7 +50,7 @@ class Pants(object):
         except:
             self.send(
                 "Excellent code detected. Reverting to old version.",
-                protocol
+                self.message[4]
                 )
             self.responses = self.old_responses
             raise
