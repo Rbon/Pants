@@ -12,6 +12,8 @@ class Pants(object):
         self.responses = responses.Responses(self)
         self.skype = skype.Skype(self)
         self.protocols = {"skype": self.skype}
+        self.old_responses = None
+        self.message = None
 
     def parse(self, message):
         self.output("{0}: {1}".format(
@@ -19,6 +21,7 @@ class Pants(object):
             message[0]
             )
         )
+        self.message = message
         self.responses.parse(message)
 
     def log(self, message):
@@ -38,10 +41,19 @@ class Pants(object):
         self.protocols[protocol].send(message)
         self.output("Pants: {}".format(message[0]))
 
-    def reload(self):
+    def reload(self, protocol):
+        self.old_responses = self.responses
         os.system("git pull git://github.com/Rbon/Pants.git master")
-        reload(responses)
-        self.responses = responses.Responses(self)
+        try:
+            reload(responses)
+            self.responses = responses.Responses(self)
+        except:
+            self.send(
+                "Excellent code detected. Reverting to old version.",
+                protocol
+                )
+            self.responses = self.old_responses
+            raise
 
     def run(self):
         while True:
@@ -50,6 +62,11 @@ class Pants(object):
             except KeyboardInterrupt:
                 print "\nQuitting."
                 quit()
+            except:
+                self.send(
+                    "Whoops, that's a bug. Reverting to old version.",
+                    self.message[4]
+                    )
 
              
 if __name__ == "__main__":
