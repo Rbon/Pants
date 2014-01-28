@@ -23,7 +23,7 @@ class Pants(object):
 
     def log(self, message):
         log_file = open("log.txt", "a")
-        log_file.write(message)
+        log_file.write(message+"\n")
         log_file.close()
 
     def output(self, message):
