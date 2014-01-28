@@ -31,9 +31,6 @@ class Responses(object):
             }
         ]
 
-    def make_phrase(self, keys, replies):
-
-
     def parse(self, message):
         self.current_message = message
         if message[0] == "Pants: foo":
