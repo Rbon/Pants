@@ -9,8 +9,8 @@ class Responses(object):
         self.phrases = [
             {
                 (
-                    "foo",
-                    "bar"
+                    "Pants: foo",
+                    "Pants: bar"
                 ),
                 (
                     "Test successful."
@@ -18,7 +18,7 @@ class Responses(object):
             },
             {
                 (
-                    "tell me a story"
+                    "Pants: tell me a story"
                 ),
                 (
                     "There once was an ugly barnacle. " \
@@ -28,18 +28,12 @@ class Responses(object):
                     "There was something about ponies... " \
                     "I think I'll let jercos tell you."
                 )
-            }
+            },
         ]
 
     def parse(self, message):
         self.current_message = message
-        if message[0] == "Pants: foo":
-            self.send("Yeah, it works.")
-        if message[0] == "Pants: poo":
-            self.send("shart")
-        if message[0] == "Pants: say goodnight":
-            self.send("'night.")
-        elif message[0] == "Pants: reload":
+        if message[0] == "Pants: reload":
             if self.current_message[2] == "godofluigi":
                 self.pants.reload()
                 self.send("Reloaded.")
@@ -48,6 +42,9 @@ class Responses(object):
                     self.current_message[1]
                     )
                 )
+        elif message[0] in self.phrases.keys():
+            if type(self.phrases[message[0]]) == str:
+                self.send(self.phrases[message[0]])
 
     def send(self, message):
         self.pants.send(
