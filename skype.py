@@ -11,13 +11,13 @@ class Skype(object):
         if not Status in self.ignored_statuses:
             Message.MarkAsSeen()
             self.pants.parse(
-                (
+                [
                     Message.Body,
                     Message.Sender.FullName,
                     Message.Sender.Handle,
                     Message.Chat,
                     "skype"
-                )
+                ]
             )
 
     def send(self, message):
