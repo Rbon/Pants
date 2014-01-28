@@ -14,7 +14,7 @@ class Responses(object):
     def parse(self, message):
         self.current_message = message
         if message[0] == "Pants: foo":
-            self.send("fart")
+            self.send("Yeah, it works.")
         if message[0] == "Pants: poo":
             self.send("shart")
         if message[0] == "Pants: say goodnight":
