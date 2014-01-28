@@ -7,7 +7,7 @@ class Phrase(object):
     def __init__(self, keys, replies):
         self.keys = keys
         self.replies = replies
-        Responses.phrases.append(self)
+        # Responses.phrases.append(self)
 
 class Responses(object):
     def __init__(self, pants):
@@ -28,7 +28,6 @@ class Responses(object):
             "I think I'll let jercos tell you.",
             ]
         )
-        print self.phrases
 
     def parse(self, message):
         self.current_message = message
