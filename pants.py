@@ -21,18 +21,22 @@ class Pants(object):
         )
         self.responses.parse(message)
 
+    def log(self, message):
+        log_file = open("log.txt", "a")
+        log_file.write(message)
+        log_file.close()
+
     def output(self, message):
-        print "{0} {1}".format(
+        output = "{0} {1}".format(
             datetime.datetime.today().strftime("[%Y-%m-%d %H:%M:%S]"),
             message
             )
+        self.log(output)
+        print output
 
     def send(self, message, protocol):
         self.protocols[protocol].send(message)
-        self.output("Pants: {}".format(
-            message[0]
-            )
-        )
+        self.output("Pants: {}".format(message[0]))
 
     def reload(self):
         os.system("git pull git://github.com/Rbon/Pants.git master")

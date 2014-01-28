@@ -25,7 +25,7 @@ class Responses(object):
                 self.send("Reloaded.")
             else:
                 self.send("Sorry {}, you don't have permission.".format(
-                    self.current_message[2]
+                    self.current_message[1]
                     )
                 )
 
