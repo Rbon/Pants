@@ -39,7 +39,7 @@ class Responses(object):
             self.send("'night.")
         elif message[0] == "Pants: reload":
             if self.current_message[2] == "godofluigi":
-                self.pants.reload(current_message[4])
+                self.pants.reload(self.current_message[4])
                 self.send("Reloaded.")
             else:
                 self.send("Sorry {}, you don't have permission.".format(
