@@ -19,8 +19,6 @@ class Skype(object):
                     "skype"
                 )
             )
-        else:
-            print
 
     def send(self, message):
         message[1].SendMessage(message[0])
