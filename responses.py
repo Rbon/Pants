@@ -3,31 +3,36 @@
 Add admin commands.
 """
 
-class Phrase(object):
-    def __init__(self, keys, replies):
-        self.keys = keys
-        self.replies = replies
-        Responses.phrases.append(self)
-
 class Responses(object):
     def __init__(self, pants):
         self.pants = pants
-        self.phrases = []
-        Phrase(
-            ["foo"],
-            ["bar","Test successful."]
-        )
-        Phrase(
-            ["tell me a story"],
-            [
-            "There once was an ugly barnacle. " \
-            "It was so ugly that everyone died. The end.",
-            "It was a dark and stormy... " \
-            "yeah, I'm drawing a blank here.",
-            "There was something about ponies... " \
-            "I think I'll let jercos tell you.",
-            ]
-        )
+        self.phrases = [
+            {
+                (
+                    "foo",
+                    "bar"
+                ),
+                (
+                    "Test successful."
+                )
+            },
+            {
+                (
+                    "tell me a story"
+                ),
+                (
+                    "There once was an ugly barnacle. " \
+                    "It was so ugly that everyone died. The end.",
+                    "It was a dark and stormy... " \
+                    "yeah, I'm drawing a blank here.",
+                    "There was something about ponies... " \
+                    "I think I'll let jercos tell you."
+                )
+            }
+        ]
+
+    def make_phrase(self, keys, replies):
+
 
     def parse(self, message):
         self.current_message = message
@@ -39,7 +44,7 @@ class Responses(object):
             self.send("'night.")
         elif message[0] == "Pants: reload":
             if self.current_message[2] == "godofluigi":
-                self.pants.reload(self.current_message[4])
+                self.pants.reload()
                 self.send("Reloaded.")
             else:
                 self.send("Sorry {}, you don't have permission.".format(
