@@ -1,4 +1,5 @@
 import datetime
+import os
 import time
 
 import responses
@@ -34,6 +35,7 @@ class Pants(object):
         )
 
     def reload(self):
+        os.system("git pull git://github.com/Rbon/Pants.git master")
         reload(responses)
         self.responses = responses.Responses(self)
 
@@ -44,6 +46,7 @@ class Pants(object):
             except KeyboardInterrupt:
                 print "\nQuitting."
                 quit()
-                
+
+             
 if __name__ == "__main__":
     pants = Pants().run()
