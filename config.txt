@@ -1,6 +1,6 @@
-nick=
-host=
-port=
-admin=
-channel=
+nick=TestPants
+host=mindjail.subluminal.net
+port=6667
+admin=Rbon
+channel=#sandbots
 password=
