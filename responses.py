@@ -46,11 +46,11 @@ class Responses(object):
                     "hey {name}"
                 ],         
                 [   
-                    "hola.",
-                    "heyo.",
+                    "Hola.",
+                    "Heyo.",
                     "Yo.",
-                    "hey {sender}.",
-                    "hey there, {sender}."
+                    "Hey {sender}.",
+                    "Hey there, {sender}."
                 ]
             ),
             (
@@ -132,15 +132,34 @@ class Responses(object):
                 [
                     ":O"
                 ]
-            ),
-            (
-                [
-                    "lol"
-                ],
-                [
-                    "lol"
-                ]
             )
+            # (
+            #     [
+            #         "{name}: "
+            #     ],
+            #     [
+            #         "It is certain.",
+            #         "It is decidedly so.",
+            #         "Without a doubt.",
+            #         "Yes - definitely.",
+            #         "You may rely on it.",
+            #         "As I see it, yes.",
+            #         "Most likely.",
+            #         "Outlook good.",
+            #         "Signs point to yes.",
+            #         "Yes.",
+            #         "Reply hazy, try again.",
+            #         "Ask again later.",
+            #         "Better not tell you now.",
+            #         "Cannot predict now.",
+            #         "Concentrate and ask again.",
+            #         "Don't count on it",
+            #         "My reply is no.",
+            #         "My sources say no.",
+            #         "Outlook not so good.",
+            #         "Very doubtful."
+            #     ]
+            # )
         ]
         for phrase in self.phrases:
             phrase_index = self.phrases.index(phrase)
@@ -189,6 +208,3 @@ class Responses(object):
             ),
             self.message[4]
         )
-
-    def test(self):
-        self.send("This is a test.")
