@@ -15,6 +15,14 @@ class Responses(object):
         self.phrases = [
             (
                 [
+                    "{name}: calc 2+2"
+                ],
+                [
+                    "Hey man, I'm not a scientist."
+                ]
+            ),
+            (
+                [
                     "{name}: botsnack"
                 ],
                 [
