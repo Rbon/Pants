@@ -1,0 +1,77 @@
+"poop"
+
+    "wooby"
+
+
+"{name}: botsnack"
+
+    nomnomnom
+
+
+"^{name}: hello$"
+"^{name}: bonjour$"
+"^{name}: hi$"
+"^{name}: hola$"
+"^{name}: sup$"
+"^{name}: hey$"
+"^hi {name}$"
+"^hey {name}$"
+
+    "Hola."
+    "Heyo."
+    "Yo."
+    "Hey {sender}."
+    "Hey there, {sender}."
+
+
+"^{name}: explode$"
+
+    "/me exploded"
+
+
+"^{name}:.* :D"
+
+    ":D"
+
+
+"^{name}:.* D:"
+
+    "D:"
+
+
+"^{name}:.* >\.>"
+   
+    "{sender}: <.<"
+
+
+"^{name}:.* <\.<"
+
+    "{sender}: >.>"
+
+
+"^{name}: tell me a story$"
+
+    "There once was an ugly barnacle. It was so ugly that everyone died. The end."
+    "It was a dark and stormy... yeah, I'm drawing a blank here."
+    "There was something about ponies... I think I'll let jercos tell you."
+
+
+"^{name}: hello"
+"^{name}: bonjour"
+"^{name}: hi"
+"^{name}: hola"
+"^{name}: sup"
+"^{name}: hey"
+"hi {name}"
+"hey {name}"
+
+    "Hola."
+    "Heyo."
+    "Yo."
+    "Hey {sender}."
+    "Hey there, {sender}."
+
+
+"^{name}: reload"
+
+    "{parser}"
