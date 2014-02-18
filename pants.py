@@ -2,14 +2,14 @@ import datetime
 import os
 import time
 
-import responses
+import parser
 import skype
 
 
 class Pants(object):
     def __init__(self):
         super(Pants, self).__init__()
-        self.responses = responses.Responses(self)
+        self.responses = parser.Responses(self)
         self.skype = skype.Skype(self)
         self.protocols = {"skype": self.skype}
         self.old_responses = None
